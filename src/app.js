@@ -33,27 +33,6 @@ app.get('/',function(req,res){
     })
 })
 
-app.get('/savings',function(req,res){
-
-    return res.render('account',{
-        account: accounts.savings
-    })
-})
-
-app.get('/checking',function(req,res){
-
-    return res.render('account',{
-        account: accounts.checking
-    })
-})
-
-app.get('/credit',function(req,res){
-
-    return res.render('account',{
-        account: accounts.credit
-    })
-})
-
 app.get('/profile',function(req,res){
     return res.render('profile',{
         user:users[0]
@@ -72,7 +51,7 @@ app.post('/transfer',(req,res) => {
     accounts[req.body.from].balance = accounts[req.body.from].balance - req.body.amount;
     accounts[req.body.to].balance = parseInt(accounts[req.body.to].balance) + parseInt(req.body.amount);
     writeJSON();
-    
+
     res.render('transfer',{
         message: 'Transfer Completed'
     });
